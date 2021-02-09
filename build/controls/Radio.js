@@ -33,18 +33,14 @@ class Radio extends control_base_1.ControlBase {
 			}
 		}
         if (control.details.hasOwnProperty('outputs')) {
-			if (control.details.outputs.hasOwnProperty('1')) {			
-				await this.createButtonCommandStateObjectAsync(control.name, uuid, '1');
-				this.addStateChangeListener(uuid + '.1', () => {
-					this.sendCommand(control.uuidAction, '1');
-				});
+			for each (outp in control.details.outputs){
+				if (control.details.outputs.hasOwnProperty(outp)) {			
+					await this.createButtonCommandStateObjectAsync(control.name, uuid, outp);
+					this.addStateChangeListener(uuid + '.' + outp, () => {
+						this.sendCommand(control.uuidAction,outp);
+					});
+				}
 			}
-			if (control.details.outputs.hasOwnProperty('2')) {			
-				await this.createButtonCommandStateObjectAsync(control.name, uuid, '2');
-				this.addStateChangeListener(uuid + '.2', () => {
-					this.sendCommand(control.uuidAction, '2');
-				});
-			}			
 		}
     }
 }
