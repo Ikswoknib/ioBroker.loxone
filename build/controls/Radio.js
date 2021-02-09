@@ -40,13 +40,11 @@ class Radio extends control_base_1.ControlBase {
 				});
 			}
 			if (control.details.outputs.hasOwnProperty('2')) {			
-				await this.createButtonCommandStateObjectAsync(control.name, uuid, control.details.outputs.1.name);
-				this.addStateChangeListener(uuid + '.' +control.details.outputs.1.name, () => {
+				await this.createButtonCommandStateObjectAsync(control.name, uuid, control.details.outputs.2);
+				this.addStateChangeListener(uuid + '.' + control.details.outputs.2, () => {
 					this.sendCommand(control.uuidAction, '2');
 				});
 			}
-
-			
 		}
     }
 }
